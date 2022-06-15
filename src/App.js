@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import React, { useState, useEffect} from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [quotes, setQuotes] = useState('');
+
+  const getQuote = () => {
+    fetch("https://type.fit/api/quotes")
+    .then( res => res.json())
+    .then(data => {
+      let randomNum = Math.floor(Math.random() * data.length);
+      setQuotes(data[randomNum]);
+    })
+  }
+
+  useEffect(() => {
+    getQuote();
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
+    <div>
+      <h1 className='header'>Click to to Retweet or get a new quote</h1>
+      <div className='App'>
+      <div className='quote'>
+        <p>{quotes.text}</p>
+        <p className='author'>{quotes.author}</p>
+        <div className='btn-container'>
+          <a href={`https://twitter.com/intent/tweet?text=${quotes.text}`}
           target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+          rel="no-opener noreferrer"
+          className='twitter-btn'>
+          <i class="fab fa-twitter"></i>
+          </a>
+          <button className='btn' onClick={getQuote}>Get Quote</button>
+        </div>
+      </div>
+      </div>
+     
     </div>
   );
 }
