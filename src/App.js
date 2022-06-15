@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <div>
-      <h1 className='header'>Click to to Retweet or get a new quote</h1>
+      <h1 className='header'>Click to Retweet or Get a New Quote</h1>
       <div className='App'>
       <div className='quote'>
         <p>{quotes.text}</p>
