@@ -30,7 +30,7 @@ const App = () => {
           target="_blank"
           rel="no-opener noreferrer"
           className='twitter-btn'>
-          <i class="fab fa-twitter"></i>
+          <i className="fab fa-twitter"></i>
           </a>
           <button className='btn' onClick={getQuote}>Get Quote</button>
         </div>
